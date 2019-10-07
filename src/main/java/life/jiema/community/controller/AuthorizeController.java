@@ -2,6 +2,8 @@ package life.jiema.community.controller;
 
 import life.jiema.community.dto.AccessTokenDTO;
 import life.jiema.community.dto.GitHubUser;
+import life.jiema.community.dto.User;
+import life.jiema.community.mapper.UserMapper;
 import life.jiema.community.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 /**
  * @author Zhoujunjie
@@ -20,12 +23,16 @@ public class AuthorizeController {
 
     @Autowired
     private GithubProvider githubProvider;
+
     @Value("${github.client.id}")
     private String clientId;
     @Value("${github.client.secret}")
     private String clientSecret;
     @Value("${github.redirect.uri}")
     private String redirectUri;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @GetMapping("/callback")
     public String callback(@RequestParam(name="code") String code,
@@ -38,11 +45,18 @@ public class AuthorizeController {
         accessTokenDTO.setClient_id(clientId);
         accessTokenDTO.setClient_secret(clientSecret);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
-        GitHubUser user = githubProvider.getUser(accessToken);
-//        System.out.println(user.getName());
-        if(user!=null){
+        GitHubUser githubUser = githubProvider.getUser(accessToken);
+//        System.out.println(githubUser.getName());
+        if(githubUser!=null){
+            User user = new User();
+            user.setToken(UUID.randomUUID().toString());
+            user.setName(githubUser.getName());
+            user.setAccountId(String.valueOf(githubUser.getId()));
+            user.setGmtCreate(System.currentTimeMillis());
+            user.setGmtModified(user.getGmtModified());
+            userMapper.insert(user);
             // 登录成功，设置cookie和session
-            request.getSession().setAttribute("user",user);
+            request.getSession().setAttribute("githubUser",githubUser);
             return "redirect:/";
 
         } else {

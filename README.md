@@ -2,15 +2,17 @@
 从零开始
 
 ## 资料
-[Spring 文档](https://spring.io/guides/gs/serving-web-content/)\
-[github修改ssh-key](https://github.com/Git-zhoujunjie/community/settings/keys)\
-[es社区](https://elasticsearch.cn/)\
-[OAuth](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)
+[Spring 文档](https://spring.io/guides/gs/serving-web-content/)  
+[github修改ssh-key](https://github.com/Git-zhoujunjie/community/settings/keys)  
+[es社区](https://elasticsearch.cn/)  
+[GitHub OAuth](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)  
+[Bootstrap](http://v3.bootcss.com/getting-started)  
+[](https://docs.spring.io/spring-boot/docs/2.2.0.RC1/reference/htmlsingle/#boot-features-connect-to-production-database)  
 
 
 ## 工具
-[git](https://git-scm.com/download)\
-jdk 8\
-idea\
-github\
-[Visual-Paradigm](https://www.visual-paradigm.com)
+[git](https://git-scm.com/download)  
+jdk 8  
+idea  
+github  
+[Visual-Paradigm](https://www.visual-paradigm.com)  
