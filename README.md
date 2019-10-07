@@ -2,12 +2,15 @@
 从零开始
 
 ## 资料
-https://spring.io/guides/gs/serving-web-content/
-https://github.com/Git-zhoujunjie/community/settings/keys
-https://elasticsearch.cn/
+[Spring 文档](https://spring.io/guides/gs/serving-web-content/)\
+[github修改ssh-key](https://github.com/Git-zhoujunjie/community/settings/keys)\
+[es社区](https://elasticsearch.cn/)\
+[OAuth](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)
+
 
 ## 工具
-git
-jdk 8
-idea
-github
+[git](https://git-scm.com/download)\
+jdk 8\
+idea\
+github\
+[Visual-Paradigm](https://www.visual-paradigm.com)
