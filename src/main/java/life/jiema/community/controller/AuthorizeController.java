@@ -61,7 +61,7 @@ public class AuthorizeController {
 
         } else {
             // 重新登录
+            return "redirect:/";
         }
-        return "index";
     }
 }
