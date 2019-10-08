@@ -16,6 +16,7 @@ jdk 8
 idea  
 github  
 [Visual-Paradigm](https://www.visual-paradigm.com)  
+[Flyway](https://flywaydb.org/getstarted/firststeps/maven)  
 
 ## 脚本
 ```sql
@@ -30,4 +31,7 @@ create table USER
   constraint USER_PK
     primary key (ID)
 );
+```  
+```bash
+mvn flyway:migrate
 ```
