@@ -1,0 +1,11 @@
+记录遇到的问题：
+
+1、idea中mvn命令无法运行，提示报错非内部命令
+   解答：maven没有配置环境变量，需要把idea内置的maven的bin路径配置到环境变量(用户)的path中去
+2、如何更新GitHub
+    git status
+    git add .
+    git commit -m "message"
+    git push
+3、flyway运行sql脚本报错
+    多半是脚本命名问题！！！ V1__name（注意此处为两条下划线）
