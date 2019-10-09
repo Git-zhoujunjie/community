@@ -17,7 +17,7 @@ idea
 github  
 [Visual-Paradigm](https://www.visual-paradigm.com)  
 [Flyway](https://flywaydb.org/getstarted/firststeps/maven)  
-
+[Lombok]()
 ## 脚本
 ```sql
 create table USER
