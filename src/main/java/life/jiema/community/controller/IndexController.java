@@ -1,7 +1,10 @@
 package life.jiema.community.controller;
 
+import life.jiema.community.dto.QuestionDto;
 import life.jiema.community.dto.User;
+import life.jiema.community.mapper.QuestionMapper;
 import life.jiema.community.mapper.UserMapper;
+import life.jiema.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author Zhoujunjie
@@ -20,9 +24,11 @@ public class IndexController {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private QuestionService questionService;
 
     @GetMapping("/")
-    public String index(HttpServletRequest request){
+    public String index(HttpServletRequest request,Model model){
         Cookie[] cookies = request.getCookies();
         for(Cookie cookie:cookies){
             if(cookie.getName().equals("token")){
@@ -35,6 +41,9 @@ public class IndexController {
             }
         }
 
+        List<QuestionDto> questionDtoList = questionService.list();
+        model.addAttribute("questions",questionDtoList);
+        //model.addAttribute("test","test!!!!");
         return "index";
     }
 }

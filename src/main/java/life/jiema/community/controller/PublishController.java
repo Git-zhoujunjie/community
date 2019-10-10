@@ -64,8 +64,8 @@ public class PublishController {
                 if(user!=null){
                     request.getSession().setAttribute("user",user);
                 }
+                break;
             }
-            break;
         }
 
         if(user==null){
