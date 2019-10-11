@@ -1,5 +1,6 @@
 package life.jiema.community.controller;
 
+import life.jiema.community.dto.PaginationDTO;
 import life.jiema.community.dto.QuestionDto;
 import life.jiema.community.dto.User;
 import life.jiema.community.mapper.QuestionMapper;
@@ -28,21 +29,24 @@ public class IndexController {
     private QuestionService questionService;
 
     @GetMapping("/")
-    public String index(HttpServletRequest request,Model model){
+    public String index(HttpServletRequest request,
+                        Model model,
+                        @RequestParam(name = "page", defaultValue = "1") Integer page,
+                        @RequestParam(name = "size", defaultValue = "5") Integer size) {
         Cookie[] cookies = request.getCookies();
-        for(Cookie cookie:cookies){
-            if(cookie.getName().equals("token")){
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("token")) {
                 String token = cookie.getValue();
                 User user = userMapper.findByToken(token);
-                if(user!=null){
-                    request.getSession().setAttribute("user",user);
+                if (user != null) {
+                    request.getSession().setAttribute("user", user);
                 }
                 break;
             }
         }
 
-        List<QuestionDto> questionDtoList = questionService.list();
-        model.addAttribute("questions",questionDtoList);
+        PaginationDTO pagination = questionService.list(page,size);
+        model.addAttribute("pagination", pagination);
         //model.addAttribute("test","test!!!!");
         return "index";
     }

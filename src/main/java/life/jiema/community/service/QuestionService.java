@@ -1,5 +1,6 @@
 package life.jiema.community.service;
 
+import life.jiema.community.dto.PaginationDTO;
 import life.jiema.community.dto.Question;
 import life.jiema.community.dto.QuestionDto;
 import life.jiema.community.dto.User;
@@ -24,17 +25,29 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
 
-    public List<QuestionDto> list() {
+    public PaginationDTO list(Integer page, Integer size) {
+        PaginationDTO paginationDTO = new PaginationDTO();
+        Integer totalCount = questionMapper.count();
+        paginationDTO.setPagination(totalCount, page, size);
+
+        if (page <= 1) page = 1;
+        if (page > paginationDTO.getTotalPage())
+            page = paginationDTO.getTotalPage();
+
+        Integer offset = size * (page - 1);
         List<QuestionDto> questionDtoList = new ArrayList<>();
-        List<Question> questionList = questionMapper.list();
-        for(Question question:questionList){
+        List<Question> questionList = questionMapper.list(offset, size);
+
+        for (Question question : questionList) {
             User user = userMapper.findById(question.getCreator());
             QuestionDto questionDto = new QuestionDto();
-            //Spring自动将一个对象中的属性内容注入到另一个对象的同名属性中
-            BeanUtils.copyProperties(question,questionDto);
+            // Spring自动将一个对象中的属性内容注入到另一个对象的同名属性中
+            BeanUtils.copyProperties(question, questionDto);
             questionDto.setUser(user);
             questionDtoList.add(questionDto);
         }
-        return questionDtoList;
+        paginationDTO.setQuestions(questionDtoList);
+
+        return paginationDTO;
     }
 }

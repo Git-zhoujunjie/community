@@ -18,7 +18,7 @@ idea
 github  
 [Visual-Paradigm](https://www.visual-paradigm.com)  
 [Flyway](https://flywaydb.org/getstarted/firststeps/maven)  
-[Lombok](https://projectlombok.org/)
+[Lombok](https://projectlombok.org/)  
 [LiveReload前台页面热部署](http://livereload.com/extensions/)  
 
 ## 脚本
